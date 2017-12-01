@@ -37,8 +37,10 @@
 			</div>
 			<div class="card-column"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
 					<div v-for="(value, key, index) in news_posts.title">
-						{{news_posts.title[key]}}
-						{{key}}
+						<div class="card">
+							<h2 class="card-header">{{news_posts.title[key]}}</h2>
+						
+						</div>
 					</div>
 
 			</div>
