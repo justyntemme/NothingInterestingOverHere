@@ -1,3 +1,7 @@
 #first-row {
     max-height: 450px;
+    padding-top: 10px;
+}
+#second-row {
+    padding-top: 10px;
 }

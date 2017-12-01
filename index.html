@@ -20,6 +20,9 @@
 				<div class="card">
 					<h2 class="card-header">{{user}}</h2>
 					<p>{{balance}}</p>
+				</t>
+					<strong>Total Bitcoin Recieved</strong>
+					<p>{{total_recieved}}</p>
 				</div>
 			
 			
@@ -28,19 +31,35 @@
 			
 		</div>
 
-				<div class="card-group" id="first-row">
-					<div class="card">
-						<!-- Bitcoin Interest over time -->
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
-						<script type="text/javascript">
-						  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
-						</script>
-					</div>
-					<div class="card p-2">
-						<h3 class="card-header">BTC Price Graph</h3>
-						<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
-					</div>
+			<div class="card-group" id="first-row">
+				<div class="card">
+					<h2 class="card-header">Bitcoin Interest Over Time</h2>
+					<!-- Bitcoin Interest over time -->
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+					<script type="text/javascript">
+					  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+					</script>
+				</div>
+				<div class="card">
+					<h2 class="card-header">BTC Price Graph</h2>
+					<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
+				</div>
+				<div class="card">
+					<h2 class="card-header">Buy BTC with Credit Card Searches: 30 Days</h2>
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+				</div>
+				<div class="card">
+					<h2 class="card-header">Use of the word Hodl: 30 days</h2>
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+				</div>
 			</div>
+			<div class="card-group" id="second-row">
+				<div class="card">
+					<h2 class="card-header">Red: Sell Bitcoin | Blue: Buy Bitcoin</h2>
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+				</div>
+			</div>
+				
 
 			
 
@@ -58,13 +77,14 @@
 					return {
 						user: "admin",
 						btcaddr: "xpub6C7siffRZv7C73jdDnrTnFhUt9qfeadXoHfTBGpMDhoCayVMFcfZL92ZW78KhVAMHwjQ2Evj12fx8QpEW7qk4Fo7wzMxCbaLUNYxzemo5GL",
-						balance: ""
+						balance: "",
+						total_recieved: "",
 					}
 				},
 				components: {
 					'Vue':Vue,
 				},
-				mounted: function() {this.getBalance()},
+				mounted: function() {this.getBalance(), this.getRecieved()},
 				methods:{
 					getBalance: function() {
 						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
@@ -73,6 +93,12 @@
 						});
 			
 					},
+					getRecieved: function() {
+						axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
+							var total_recieved = parseInt(response.data) * .00000001;	
+							this.total_recieved = total_recieved;
+						})
+					}
 				},
 			});
 		</script>
