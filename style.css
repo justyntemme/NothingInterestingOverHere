@@ -1,10 +1,14 @@
 #first-row {
     max-height: 450px;
-    padding-top: 10px;
 }
 #second-row {
-    padding-top: 10px;
+}
+.card {
+    margin: 20px;
+    border-color: lightslategray;
+}
+.card-header {
+    border-color: lightslategray;
 }
 #title-card {
-    display: inline-block;
 }

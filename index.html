@@ -17,15 +17,21 @@
 		<div id="btcjs">
 			<!--Content Goes Here -->
 			<div class="card-group" style="column-count: 4;">
-				<div class="card" id="title-card">
-					<h2 class="card-header">{{user}}</h2>
+				<div class="card text-justify" id="title-card">
+					<h2 class="card-header">Balance for {{user}}</h2>
 					<p>{{balance}}</p>
-				</t>
-					<strong>Total Bitcoin Recieved</strong>
+				</div>
+				<div class="card">
+					<h2 class="card-header">Total Bitcoin Recieved</h2>
 					<p>{{total_recieved}}</p>
-					<strong>Market Cap</strong>
+			
+				</div>
+				<div class="card">
+					<h2 class="card-header">Market Cap</h2>
 					<p>{{market_cap}}</p>
-					<strong>BTC Sent in Last 24 hours</strong>
+				</div>
+				<div class="card">
+					<h2 class="card-header">BTC Sent: 24 hours</h2>
 					<p>{{btc_sent_24}}</p>
 				</div>
 			
