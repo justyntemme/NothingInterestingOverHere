@@ -17,12 +17,16 @@
 		<div id="btcjs">
 			<!--Content Goes Here -->
 			<div class="card-group" style="column-count: 4;">
-				<div class="card">
+				<div class="card" id="title-card">
 					<h2 class="card-header">{{user}}</h2>
 					<p>{{balance}}</p>
 				</t>
 					<strong>Total Bitcoin Recieved</strong>
 					<p>{{total_recieved}}</p>
+					<strong>Market Cap</strong>
+					<p>{{market_cap}}</p>
+					<strong>BTC Sent in Last 24 hours</strong>
+					<p>{{btc_sent_24}}</p>
 				</div>
 			
 			
@@ -79,12 +83,14 @@
 						btcaddr: "xpub6C7siffRZv7C73jdDnrTnFhUt9qfeadXoHfTBGpMDhoCayVMFcfZL92ZW78KhVAMHwjQ2Evj12fx8QpEW7qk4Fo7wzMxCbaLUNYxzemo5GL",
 						balance: "",
 						total_recieved: "",
+						market_cap: "",
+						btc_sent_24: "",
 					}
 				},
 				components: {
 					'Vue':Vue,
 				},
-				mounted: function() {this.getBalance(), this.getRecieved()},
+				mounted: function() {this.getBalance(), this.getRecieved(), this.getMarketCap(), this.getSent24()},
 				methods:{
 					getBalance: function() {
 						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
@@ -97,6 +103,16 @@
 						axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
 							var total_recieved = parseInt(response.data) * .00000001;	
 							this.total_recieved = total_recieved;
+						})
+					},
+					getMarketCap: function() {
+						axios.get("https://blockchain.info/q/marketcap?cors=true").then(response=> {
+							this.market_cap = response.data;
+						})
+					},
+					getSent24: function() {
+						axios.get("https://blockchain.info/q/24hrbtcsent?cors=true").then(response=> {
+							this.getSent24 = response.data;
 						})
 					}
 				},

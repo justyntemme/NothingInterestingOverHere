@@ -5,3 +5,6 @@
 #second-row {
     padding-top: 10px;
 }
+#title-card {
+    display: inline-block;
+}
