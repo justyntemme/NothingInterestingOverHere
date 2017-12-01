@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@next/dist/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 	</head>
 	<meta>
 		<meta charset="UTF-8">
 		<title>BTC Manager</title>
 	</meta>
 	<body>
-		<div id="vuebtc">
+		
+		<div id="btcjs">
 			<!--Content Goes Here -->
-			<div class="card">
-				{{ user }}
+			<div class="card-columns">
+				<div class="card">
+					<h2 calss="card-header">{{user}}</h2>
+					<p>Content</p>
+				</div>
+
+			</div>
+			
+		</div>
+
+				<div class="card-columns">
+					<div class="card">
+					<!-- Bitcoin Interest over time -->
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+					<script type="text/javascript">
+					  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+					</script>
+					</div>
+				</div>
 			</div>
 
-		</div>
+			
+
+	
 		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 		<script>
 			new Vue({
 				el: "#btcjs",
