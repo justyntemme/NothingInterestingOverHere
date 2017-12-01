@@ -132,8 +132,7 @@
 						})
 					},
 					getNews: function() {
-						this.news_posts.title[0]="Tests!"
-						this.news_posts.title[1]="testsing!"
+						this.$set(this.news_posts.title, 0, "tests!")
 
 					}
 				},
