@@ -112,7 +112,7 @@
 					},
 					getSent24: function() {
 						axios.get("https://blockchain.info/q/24hrbtcsent?cors=true").then(response=> {
-							this.getSent24 = response.data;
+							this.btc_sent_24 = response.data;
 						})
 					}
 				},
