@@ -14,25 +14,30 @@
 		
 		<div id="btcjs">
 			<!--Content Goes Here -->
-			<div class="card-columns">
+			<div class="card-group" style="column-count: 4;">
 				<div class="card">
-					<h2 calss="card-header">{{user}}</h2>
-					<p>Content</p>
+					<h2 class="card-header">{{user}}</h2>
+					<p>{{balance}}</p>
 				</div>
+			
+			
 
 			</div>
 			
 		</div>
 
-				<div class="card-columns">
+				<div class="card-group">
 					<div class="card">
-					<!-- Bitcoin Interest over time -->
-					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
-					<script type="text/javascript">
-					  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
-					</script>
+						<!-- Bitcoin Interest over time -->
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+						<script type="text/javascript">
+						  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+						</script>
 					</div>
-				</div>
+					<div class="card p-2">
+						<h3 class="card-header">BTC Price Graph</h3>
+						<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
+					</div>
 			</div>
 
 			
@@ -41,14 +46,31 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
 		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+		<!-- vue-resource -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 		<script>
+
 			new Vue({
 				el: "#btcjs",
 				data() {
 					return {
-						user: "admin"
+						user: "admin",
+						btcaddr: "xpub6C7siffRZv7C73jdDnrTnFhUt9qfeadXoHfTBGpMDhoCayVMFcfZL92ZW78KhVAMHwjQ2Evj12fx8QpEW7qk4Fo7wzMxCbaLUNYxzemo5GL",
+						balance: ""
 					}
-				}
+				},
+				components: {
+					'Vue':Vue,
+				},
+				mounted: function() {this.getBalance()},
+				methods:{
+					getBalance: function() {
+						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
+							Vue.set(this.balance= (.00000001 *(parseInt(response.data))))
+						});
+			
+					},
+				},
 			});
 		</script>
 	</body>
