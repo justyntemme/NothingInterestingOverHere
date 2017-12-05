@@ -2,6 +2,7 @@
 
 <html lang="en">
 	<head>
+		
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@next/dist/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
@@ -13,7 +14,7 @@
 		<title>BTC Manager</title>
 	</meta>
 	<body>
-		
+
 		<div id="btcjs">
 			<!--Content Goes Here -->
 			<div class="card-group" style="column-count: 4;">
@@ -24,7 +25,7 @@
 				<div class="card">
 					<h2 class="card-header">Total Bitcoin Recieved</h2>
 					<p>{{total_recieved}}</p>
-			
+
 				</div>
 				<div class="card">
 					<h2 class="card-header">Market Cap</h2>
@@ -38,13 +39,24 @@
 			<div class="card-column"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
 					<div v-for="(value, key, index) in news_posts.title">
 						<div class="card">
-							<h2 class="card-header">{{news_posts.title[key]}}</h2>
+							<div class="row">
+									<div>
+											<div  class="card-img-bottom">
+												<img src={{news_posts.link[url]}}}>
+											</div>
+										  </div>
+							<div class="card-block">
+								<h2 class="card-title">{{news_posts.title[key]}}</h2>
+								<p class="card-text">{{news_posts.description[key]}}</p>
+								<a class="card-text" href="{{app.news_posts.link[key]}}">Read More</a>
+							</div>
 						
+						</div>
 						</div>
 					</div>
 
 			</div>
-			
+
 		</div>
 
 			<div class="card-group" id="first-row">
@@ -62,24 +74,24 @@
 				</div>
 				<div class="card">
 					<h2 class="card-header">Buy BTC with Credit Card Searches: 30 Days</h2>
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
 				</div>
 				<div class="card">
 					<h2 class="card-header">Use of the word Hodl: 30 days</h2>
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
 				</div>
 			</div>
 			<div class="card-group" id="second-row">
 				<div class="card">
 					<h2 class="card-header">Buy Bitcoin VS Sell Bitcoin</h2>
-					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
 				</div>
 			</div>
-				
 
-			
 
-	
+
+
+
 		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
 		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
@@ -103,7 +115,7 @@
 							link: [],
 							description: [],
 						},
-						
+
 					}
 				},
 				components: {
@@ -113,14 +125,14 @@
 				methods:{
 					getBalance: function() {
 						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
-							var balance = parseInt(response.data) * .00000001;	
+							var balance = parseInt(response.data) * .00000001;
 							this.balance= balance;
 						});
-			
+
 					},
 					getRecieved: function() {
 						axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
-							var total_recieved = parseInt(response.data) * .00000001;	
+							var total_recieved = parseInt(response.data) * .00000001;
 							this.total_recieved = total_recieved;
 						})
 					},
@@ -135,7 +147,12 @@
 						})
 					},
 					getNews: function() {
-						this.$set(this.news_posts.title, 0, "tests!")
+						this.$set(this.news_posts.title, 0, "tests article")
+						this.$set(this.news_posts.description, 0, "test article lorem epsom lorem")
+						this.$set(this.news_posts.link, 0, "http://localhost:1313")
+						this.$set(this.news_posts.title, 1, "tests article")
+						this.$set(this.news_posts.description, 1, "test article lorem epsom lorem")
+						this.$set(this.news_posts.link, 1, "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQgeTHRrCwejdlV-EXl215v_QY-qzC-UHrAUhgRzjsEE3zY-4t3ep_N6KwjXrwUCAfXCz2pFPwCA")
 
 					}
 				},
