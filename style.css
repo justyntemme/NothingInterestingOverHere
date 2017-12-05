@@ -22,6 +22,8 @@
     height: 150px;
     width: 200px;
     margin-right: 25px;
+    padding-right: 25px;
+    padding-left: 0px !important;
   }
 
   .card-block {

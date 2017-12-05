@@ -38,17 +38,17 @@
 			</div>
 			<div class="card-column"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
 					<div v-for="(value, key, index) in news_posts.title">
-						<div class="card">
+						<div class="card container">
 							<div class="row">
 									<div>
-											<div  class="card-img-bottom">
-												<img src={{news_posts.link[url]}}}>
+											<div  class="card-img-bottom container">
+												<img class="flex" v-bind:src=news_posts.link[key] style="flex-shrink: 0; min-height: 100%; max-width: 100%;overflow: hidden; float: left;">
 											</div>
 										  </div>
 							<div class="card-block">
 								<h2 class="card-title">{{news_posts.title[key]}}</h2>
 								<p class="card-text">{{news_posts.description[key]}}</p>
-								<a class="card-text" href="{{app.news_posts.link[key]}}">Read More</a>
+								<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
 							</div>
 						
 						</div>
