@@ -2,14 +2,15 @@
 
 <html lang="en">
 	<head>
-		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@next/dist/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 		<!--CSS stylings -->
 		<link type="text/css" rel="stylesheet" href="./style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css" integrity="sha256-7ojAK4IBCGMZam/HxRwhDegjN3WRHCRlShaeZassz2g=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js" integrity="sha256-ryJ2fPnVdJ0kcED8zYEreV77dcLLV4evQHK/j8bwhhk=" crossorigin="anonymous"></script>
+
+
+
 
 </head>
 	<meta>
@@ -100,10 +101,13 @@
 		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 		<!-- vue-resource -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
-		<script>
+
+		<script>		
 
 			new Vue({
+				
 				el: "#btcjs",
+				
 				data() {
 					return {
 						user: "admin",
@@ -126,6 +130,7 @@
 				},
 				mounted: function() {this.getBalance(), this.getRecieved(), this.getMarketCap(), this.getSent24(), this.getNews()},
 				methods:{
+					
 					getBalance: function() {
 						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
 							var balance = parseInt(response.data) * .00000001;
@@ -150,12 +155,26 @@
 						})
 					},
 					getNews: function() {
-						this.$set(this.news_posts.title, 0, "tests article")
-						this.$set(this.news_posts.description, 0, "test article lorem epsom lorem")
-						this.$set(this.news_posts.link, 0, "http://localhost:1313")
-						this.$set(this.news_posts.title, 1, "tests article")
-						this.$set(this.news_posts.description, 1, "test article lorem epsom lorem")
-						this.$set(this.news_posts.link, 1, "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQgeTHRrCwejdlV-EXl215v_QY-qzC-UHrAUhgRzjsEE3zY-4t3ep_N6KwjXrwUCAfXCz2pFPwCA")
+						var r = this;
+						axios.get("https://cors-anywhere.herokuapp.com/https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us", {headers: {"X-Requested-With": "XMLHttpRequest"}}).then(response => {
+							var key = 0;	
+							$(response.data).find("item").each(function (){
+								console.log(this);
+								var title = $(this).find("title").text();
+								var link = $(this).find("link");
+								var description = $(this).find("description").text();
+								var image = $(description).find("src").text();
+								Vue.set(r.news_posts.title, key, title);
+								Vue.set(r.news_posts.link, key, link);
+								Vue.set(r.news_posts.image, key, image);
+								console.log(link.val())
+								console.log(image);
+
+								key++;
+								
+							})
+						})
+						
 
 					}
 				},
@@ -163,3 +182,5 @@
 		</script>
 	</body>
 </html>
+<!--
+	 
