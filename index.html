@@ -40,7 +40,8 @@
 					<p>{{btc_sent_24}}</p>
 				</div>
 			</div>
-			<div class="card-column"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
+			<div class="row">
+			<div class="card-column col-lg-6 col-md-3 col-sm-2"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
 					<div v-for="(value, key, index) in news_posts.title">
 						<div class="card container">
 							<div class="row">
@@ -59,7 +60,35 @@
 						</div>
 					</div>
 
+				
+	
+				</div>
+
+				<div class="card container">
+							<!-- TradingView Widget BEGIN -->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+new TradingView.widget({
+  "autosize": true,
+  "symbol": "COINBASE:BTCUSD",
+  "interval": "3",
+  "timezone": "Etc/UTC",
+  "theme": "Light",
+  "style": "2",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "hideideas": true
+});
+</script>
+<!-- TradingView Widget END -->
+				</div>
+
 			</div>
+		
+			</div>
+
 
 		</div>
 
@@ -157,8 +186,9 @@
 					getNews: function() {
 						var r = this;
 						axios.get("https://cors-anywhere.herokuapp.com/https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us", {headers: {"X-Requested-With": "XMLHttpRequest"}}).then(response => {
-							var key = 0;	
+							var key = 0;
 							$(response.data).find("item").each(function (){
+							if (key < 5) {
 								console.log(this);
 								var title = $(this).find("title").text();
 								var link = $(this).find("link");
@@ -171,6 +201,7 @@
 								console.log(image);
 
 								key++;
+							}
 								
 							})
 						})
@@ -182,5 +213,3 @@
 		</script>
 	</body>
 </html>
-<!--
-	 
