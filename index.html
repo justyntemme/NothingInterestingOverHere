@@ -8,6 +8,7 @@
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 		<!--CSS stylings -->
 		<link type="text/css" rel="stylesheet" href="./style.css">
+		<!-- MDB CSS/JS -->
 
 
 
@@ -47,11 +48,11 @@
 							<div class="row">
 									<div>
 											<div  class="card-img-bottom container">
-												<img class="flex" v-bind:src=news_posts.link[key] style="flex-shrink: 0; min-height: 100%; max-width: 100%;overflow: hidden; float: left;">
+												<img class="flex" v-bind:src=news_posts.image[key] style="flex-shrink: 0; min-height: 100%; max-width: 100%;overflow: hidden; float: left;">
 											</div>
 										  </div>
 							<div class="card-block">
-								<h2 class="card-title">{{news_posts.title[key]}}</h2>
+								<h3 class="card-title">{{news_posts.title[key]}}</h3>
 								<p class="card-text">{{news_posts.description[key]}}</p>
 								<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
 							</div>
@@ -187,18 +188,18 @@ new TradingView.widget({
 						var r = this;
 						axios.get("https://cors-anywhere.herokuapp.com/https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us", {headers: {"X-Requested-With": "XMLHttpRequest"}}).then(response => {
 							var key = 0;
-							$(response.data).find("item").each(function (){
+							xmlItem = $.parseXML(response.data);
+							$(xmlItem).find("item").each(function (){
 							if (key < 5) {
-								console.log(this);
 								var title = $(this).find("title").text();
-								var link = $(this).find("link");
-								var description = $(this).find("description").text();
-								var image = $(description).find("src").text();
+								var link = $(this).find("link").text();
+								rawDescription = $(this).find("description").text();
+								descriptionObject = $.parseHTML(rawDescription);
+
+								image = descriptionObject[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src;
 								Vue.set(r.news_posts.title, key, title);
 								Vue.set(r.news_posts.link, key, link);
 								Vue.set(r.news_posts.image, key, image);
-								console.log(link.val())
-								console.log(image);
 
 								key++;
 							}
