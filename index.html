@@ -1,121 +1,108 @@
 <!-- Copyright 2017, Justyn Temme - NextWave Solutions LLC, All rights reserved.
-	 Distributing and/or modifying this work is stricly prohibited
-
--->
-
-<!DOCTYPE html>
-<html lang="en">
-	<head>	
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109147161-5"></script>
-		<script>
-  			window.dataLayer = window.dataLayer || [];
-  			function gtag(){dataLayer.push(arguments);}
-  			gtag('js', new Date());
-
-  			gtag('config', 'UA-109147161-5');
-		</script>
-
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-		<!--CSS stylings -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.css" integrity="sha256-FzLeUqtB/XZzQ2hKxDG72xT4V/GKNR4cK5v6cv8oABU=" crossorigin="anonymous" />
-		<link type="text/css" rel="stylesheet" href="./style.css">
-		<!-- MDB CSS/JS -->
-	</head>
-	<meta>
-	<meta charset="UTF-8">
-	<title>BTC Manager</title>
-	</meta>
-	<body>
-		<div id="btcjs">
-			<!--Content Goes Here -->
-			<div class="card-group" style="column-count: 4;">
-				<div class="card" id="title-card">
-					<h2 class="card-header">Balance for {{user}}</h2>
-					<nav class="nav nav-tabs" id="walletTab" role="tablist">
+	Distributing and/or modifying this work is stricly prohibited
+	
+	-->
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109147161-5"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				
+				gtag('config', 'UA-109147161-5');
+			</script>
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+			<!--CSS stylings -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.css" integrity="sha256-FzLeUqtB/XZzQ2hKxDG72xT4V/GKNR4cK5v6cv8oABU=" crossorigin="anonymous" />
+			<link type="text/css" rel="stylesheet" href="./style.css">
+			<!-- MDB CSS/JS -->
+		</head>
+		<meta>
+		<meta charset="UTF-8">
+		<title>BTC Manager</title>
+		</meta>
+		<body>
+			<div id="btcjs">
+				<!--Content Goes Here -->
+				<div class="card-group" style="column-count: 4;">
+					<div class="card" id="title-card">
+						<h2 class="card-header">Balance for {{user}}</h2>
+						<nav class="nav nav-tabs" id="walletTab" role="tablist">
 							<a class="nav-item nav-link active" id="nav-btc-tab" data-toggle="tab" href="#btc" role="tab" aria-controls="btc" aria-selected="true">BTC</a>
 							<a class="nav-item nav-link" id="nav-eth-tab" data-toggle="tab" href="#eth" role="tab" aria-controls="eth" aria-selected="false">ETH</a>
-						  </nav>
-						  <div class="tab-content" id="wallet-tabContent">
+						</nav>
+						<div class="tab-content" id="wallet-tabContent">
 							<div class="tab-pane fade show active" id="btc" role="tabpanel" aria-labelledby="nav-btc-tab">{{balance}}</div>
 							<div class="tab-pane fade" id="eth" role="tabpanel" aria-labelledby="nav-eth-tab">Not Yet Supported</div>
-						  </div>
-				</div>
-				<div class="card">
-					<h2 class="card-header">Total Bitcoin Recieved</h2>
-					<nav class="nav nav-tabs" id="recievedTab" role="tablist">
+						</div>
+					</div>
+					<div class="card">
+						<h2 class="card-header">Total Bitcoin Recieved</h2>
+						<nav class="nav nav-tabs" id="recievedTab" role="tablist">
 							<a class="nav-item nav-link active" id="nav-btc-recieved-tab" data-toggle="tab" href="#btc-recieved" role="tab" aria-controls="btc-recieved" aria-selected="true">BTC</a>
 							<a class="nav-item nav-link" id="nav-eth-recieved-tab" data-toggle="tab" href="#eth-recieved" role="tab" aria-controls="eth-recieved" aria-selected="false">ETH</a>
-						  </nav>
-						  <div class="tab-content" id="recieved-tabContent">
+						</nav>
+						<div class="tab-content" id="recieved-tabContent">
 							<div class="tab-pane fade show active" id="btc-recieved" role="tabpanel" aria-labelledby="nav-btc-recieved-tab">{{total_recieved}}</div>
 							<div class="tab-pane fade" id="eth-recieved" role="tabpanel" aria-labelledby="nav-eth-recieved-tab">Not Yet Supported</div>
-						  </div>
-				</div>
-				<div class="card">
-					<h2 class="card-header">Market Cap</h2>
-					<p>{{market_cap}}</p>
-				</div>
-				<div class="card">
-					<h2 class="card-header">BTC Sent: 24 hours</h2>
-					<p>{{btc_sent_24}}</p>
-				</div>
-			</div>
-				<div class="card" class="container">
-					<h2 clas="card-title">News</h2>
-
-					<nav class="nav nav-tabs" id="news-tab" role="tablist">
-							<a class="nav-item nav-link active" id="news-btc-tab" data-toggle="tab" href="#news-btc" role="tab" aria-controls="news-btc" aria-selected="true">BTC</a>
-							<a class="nav-item nav-link" id="news-eth-tab" data-toggle="tab" href="#news-eth" role="tab" aria-controls="news-eth" aria-selected="false">ETH</a>
-						  </nav>
-						  <div class="tab-content" id="news-content">
-							  
-							<div class="tab-pane fade show active" id="news-btc" role="tabpanel" aria-labelledby="news-btc-tab">
-										<div class="card-group" style="column-count: 6;">
-												<!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
-												<div v-for="(value, key, index) in news_posts.title">
-													<div class="card" style="width: 18rem; height: 18rem;">
-															<img class="card-img-top" v-bind:src=news_posts.image[key] style="width: 18rem;" >
-															<div class="card-block">
-																<h3 class="card-title">{{news_posts.title[key]}}</h3>
-																<p class="card-text">{{news_posts.description[key]}}</p>
-																<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
-															</div>
-														</div>
-													</div>
-												</div>
-												</div>
-							<div class="tab-pane fade" id="news-eth" role="tabpanel" aria-labelledby="news-eth-tab">
-										<div class="card-group" style="column-count: 6;">
-												<!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
-												<div v-for="(value, key, index) in news_posts.title">
-													<div class="card" style="width: 18rem; height: 18rem;">
-															<img class="card-img-top" v-bind:src=news_posts.image[key] style="width: 18rem;" >
-															<div class="card-block">
-																<h3 class="card-title">{{news_posts.title[key]}}</h3>
-																<p class="card-text">{{news_posts.description[key]}}</p>
-																<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
-															</div>
-														</div>
-													</div>
-												</div>
-									
-							</div>
-						  </div>
-
-
-
-
-				
-
-
-
+						</div>
+					</div>
+					<div class="card">
+						<h2 class="card-header">Market Cap</h2>
+						<p>{{market_cap}}</p>
+					</div>
+					<div class="card">
+						<h2 class="card-header">BTC Sent: 24 hours</h2>
+						<p>{{btc_sent_24}}</p>
 					</div>
 				</div>
-				<div class="card-group" style="height: 400px;">
+				<div class="card" class="container">
+					<h2 clas="card-title">News</h2>
+					<nav class="nav nav-tabs" id="news-tab" role="tablist">
+						<a class="nav-item nav-link active" id="news-btc-tab" data-toggle="tab" href="#news-btc" role="tab" aria-controls="news-btc" aria-selected="true">BTC</a>
+						<a class="nav-item nav-link" id="news-eth-tab" data-toggle="tab" href="#news-eth" role="tab" aria-controls="news-eth" aria-selected="false">ETH</a>
+					</nav>
+					<div class="tab-content" id="news-content">
+						<div class="tab-pane fade show active" id="news-btc" role="tabpanel" aria-labelledby="news-btc-tab">
+							<div class="card-group" style="column-count: 6;">
+								<!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
+								<div v-for="(value, key, index) in news_posts.title">
+									<div class="card" style="width: 18rem; height: 18rem;">
+										<img class="card-img-top" v-bind:src=news_posts.image[key] style="width: 18rem;" >
+										<div class="card-block">
+											<h3 class="card-title">{{news_posts.title[key]}}</h3>
+											<p class="card-text">{{news_posts.description[key]}}</p>
+											<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="news-eth" role="tabpanel" aria-labelledby="news-eth-tab">
+							<div class="card-group" style="column-count: 6;">
+								<!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
+								<div v-for="(value, key, index) in news_posts.title">
+									<div class="card" style="width: 18rem; height: 18rem;">
+										<img class="card-img-top" v-bind:src=news_posts.image[key] style="width: 18rem;" >
+										<div class="card-block">
+											<h3 class="card-title">{{news_posts.title[key]}}</h3>
+											<p class="card-text">{{news_posts.description[key]}}</p>
+											<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-group" style="height: 400px;">
 				<div class="col-md-6 col-lg-6 col-sm-6 card container" style="">
 					<!-- TradingView Widget BEGIN -->
 					<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -136,33 +123,33 @@
 					</script>
 					<!-- TradingView Widget END -->
 				</div>
-					<div class="card col-md-6 col-lg-6">
-						<h2 class="card-header">Buy Bitcoin VS Sell Bitcoin</h2>
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-					</div>
+				<div class="card col-md-6 col-lg-6">
+					<h2 class="card-header">Buy Bitcoin VS Sell Bitcoin</h2>
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
 				</div>
-		</div>
-		</div>
-		<div class="card-group" id="first-row">
-			<div class="card">
-				<h2 class="card-header">Bitcoin Interest Over Time</h2>
-				<!-- Bitcoin Interest over time -->
-				<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
-				<script type="text/javascript">
-					trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
-				</script>
 			</div>
-			<div class="card">
-				<h2 class="card-header">BTC Price Graph</h2>
-				<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
 			</div>
-			<div class="card">
-				<h2 class="card-header">Buy with Credit Card Searches: 30 Days</h2>
-				<nav class="nav nav-tabs" id="ccsearch-tab" role="tablist">
+			</div>
+			<div class="card-group" id="first-row">
+				<div class="card">
+					<h2 class="card-header">Bitcoin Interest Over Time</h2>
+					<!-- Bitcoin Interest over time -->
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+					<script type="text/javascript">
+						trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+					</script>
+				</div>
+				<div class="card">
+					<h2 class="card-header">BTC Price Graph</h2>
+					<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
+				</div>
+				<div class="card">
+					<h2 class="card-header">Buy with Credit Card Searches: 30 Days</h2>
+					<nav class="nav nav-tabs" id="ccsearch-tab" role="tablist">
 						<a class="nav-item nav-link active" id="ccsearch-btc-tab" data-toggle="tab" href="#ccsearch-btc" role="tab" aria-controls="ccsearch-btc" aria-selected="true">BTC</a>
 						<a class="nav-item nav-link" id="ccsearch-eth-tab" data-toggle="tab" href="#ccsearch-eth" role="tab" aria-controls="ccsearch-eth" aria-selected="false">ETH</a>
-					  </nav>
-					  <div class="tab-content" id="ccseach-content">
+					</nav>
+					<div class="tab-content" id="ccseach-content">
 						<div class="tab-pane fade show active" id="ccsearch-btc" role="tabpanel" aria-labelledby="ccsearch-btc-tab">
 							<div style="margin-top: 40px;">
 								<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
@@ -173,98 +160,96 @@
 								<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy eth with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20eth%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
 							</div>
 						</div>
-					  </div>
-				
+					</div>
+				</div>
+				<div class="card">
+					<h2 class="card-header">Use of the word Hodl: 30 days</h2>
+					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+				</div>
 			</div>
-			<div class="card">
-				<h2 class="card-header">Use of the word Hodl: 30 days</h2>
-				<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-			</div>
-		</div>
-		
-		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
-		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-		<!-- vue-resource -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
-		<script>		
-			new Vue({
-				
-				el: "#btcjs",
-				
-				data() {
-					return {
-						user: "admin",
-						btcaddr: "xpub6C7siffRZv7C73jdDnrTnFhUt9qfeadXoHfTBGpMDhoCayVMFcfZL92ZW78KhVAMHwjQ2Evj12fx8QpEW7qk4Fo7wzMxCbaLUNYxzemo5GL",
-						balance: "",
-						total_recieved: "",
-						market_cap: "",
-						btc_sent_24: "",
-						news_posts: {
-							title: [],
-							image: [],
-							link: [],
-							description: [],
-						},
-			
-					}
-				},
-				components: {
-					'Vue':Vue,
-				},
-				mounted: function() {this.getBalance(), this.getRecieved(), this.getMarketCap(), this.getSent24(), this.getNews()},
-				methods:{
+			<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+			<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+			<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+			<!-- vue-resource -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+			<script>		
+				new Vue({
 					
-					getBalance: function() {
-						axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
-							var balance = parseInt(response.data) * .00000001;
-							this.balance= balance;
-						});
-			
+					el: "#btcjs",
+					
+					data() {
+						return {
+							user: "admin",
+							btcaddr: "xpub6C7siffRZv7C73jdDnrTnFhUt9qfeadXoHfTBGpMDhoCayVMFcfZL92ZW78KhVAMHwjQ2Evj12fx8QpEW7qk4Fo7wzMxCbaLUNYxzemo5GL",
+							balance: "",
+							total_recieved: "",
+							market_cap: "",
+							btc_sent_24: "",
+							news_posts: {
+								title: [],
+								image: [],
+								link: [],
+								description: [],
+							},
+				
+						}
 					},
-					getRecieved: function() {
-						axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
-							var total_recieved = parseInt(response.data) * .00000001;
-							this.total_recieved = total_recieved;
-						})
+					components: {
+						'Vue':Vue,
 					},
-					getMarketCap: function() {
-						axios.get("https://blockchain.info/q/marketcap?cors=true").then(response=> {
-							this.market_cap = response.data;
-						})
-					},
-					getSent24: function() {
-						axios.get("https://blockchain.info/q/24hrbtcsent?cors=true").then(response=> {
-							this.btc_sent_24 = response.data;
-						})
-					},
-					getNews: function() {
-						var r = this;
-						axios.get("https://cors-anywhere.herokuapp.com/https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us", {headers: {"X-Requested-With": "XMLHttpRequest"}}).then(response => {
-							var key = 0;
-							xmlItem = $.parseXML(response.data);
-							$(xmlItem).find("item").each(function (){
-							if (key < 6) {
-								var title = $(this).find("title").text();
-								var link = $(this).find("link").text();
-								rawDescription = $(this).find("description").text();
-								descriptionObject = $.parseHTML(rawDescription);
-			
-								image = descriptionObject[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src;
-								Vue.set(r.news_posts.title, key, title);
-								Vue.set(r.news_posts.link, key, link);
-								Vue.set(r.news_posts.image, key, image);
-			
-								key++;
-							}
-								
-							})
-						})
+					mounted: function() {this.getBalance(), this.getRecieved(), this.getMarketCap(), this.getSent24(), this.getNews()},
+					methods:{
 						
-			
-					}
-				},
-			});
-		</script>
-	</body>
-</html>
+						getBalance: function() {
+							axios.get("https://blockchain.info/q/addressbalance/" + this.btcaddr + "?cors=true").then(response => {
+								var balance = parseInt(response.data) * .00000001;
+								this.balance= balance;
+							});
+				
+						},
+						getRecieved: function() {
+							axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
+								var total_recieved = parseInt(response.data) * .00000001;
+								this.total_recieved = total_recieved;
+							})
+						},
+						getMarketCap: function() {
+							axios.get("https://blockchain.info/q/marketcap?cors=true").then(response=> {
+								this.market_cap = response.data;
+							})
+						},
+						getSent24: function() {
+							axios.get("https://blockchain.info/q/24hrbtcsent?cors=true").then(response=> {
+								this.btc_sent_24 = response.data;
+							})
+						},
+						getNews: function() {
+							var r = this;
+							axios.get("https://cors-anywhere.herokuapp.com/https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us", {headers: {"X-Requested-With": "XMLHttpRequest"}}).then(response => {
+								var key = 0;
+								xmlItem = $.parseXML(response.data);
+								$(xmlItem).find("item").each(function (){
+								if (key < 6) {
+									var title = $(this).find("title").text();
+									var link = $(this).find("link").text();
+									rawDescription = $(this).find("description").text();
+									descriptionObject = $.parseHTML(rawDescription);
+				
+									image = descriptionObject[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src;
+									Vue.set(r.news_posts.title, key, title);
+									Vue.set(r.news_posts.link, key, link);
+									Vue.set(r.news_posts.image, key, image);
+				
+									key++;
+								}
+									
+								})
+							})
+							
+				
+						}
+					},
+				});
+			</script>
+		</body>
+	</html>
