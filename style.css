@@ -1,28 +1,6 @@
 #first-row {
     max-height: 450px;
 }
-#second-row {
-}
 .card {
     margin: 10px;
 }
-.card-header {
-}
-#title-card {
-}
-
-
-  .card-img-bottom {
-    color: #fff;
-    height: 20rem;
-    
-    height: 150px;
-    width: 200px;
-    margin-right: 25px;
-    padding-right: 25px;
-    padding-left: 0px !important;
-  }
-
-  .card-block {
-      float:left;
-  }

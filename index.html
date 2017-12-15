@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.css" integrity="sha256-FzLeUqtB/XZzQ2hKxDG72xT4V/GKNR4cK5v6cv8oABU=" crossorigin="anonymous" />
@@ -10,17 +9,12 @@
 		<!--CSS stylings -->
 		<link type="text/css" rel="stylesheet" href="./style.css">
 		<!-- MDB CSS/JS -->
-
-
-
-
-</head>
+	</head>
 	<meta>
-		<meta charset="UTF-8">
-		<title>BTC Manager</title>
+	<meta charset="UTF-8">
+	<title>BTC Manager</title>
 	</meta>
 	<body>
-
 		<div id="btcjs">
 			<!--Content Goes Here -->
 			<div class="card-group" style="column-count: 4;">
@@ -31,7 +25,6 @@
 				<div class="card">
 					<h2 class="card-header">Total Bitcoin Recieved</h2>
 					<p>{{total_recieved}}</p>
-
 				</div>
 				<div class="card">
 					<h2 class="card-header">Market Cap</h2>
@@ -42,99 +35,77 @@
 					<p>{{btc_sent_24}}</p>
 				</div>
 			</div>
-			<div class="row">
-			<div class="card-column col-lg-6 col-md-3 col-sm-2"> <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
+				<div class="card-group" style="column-count: 6;">
+					<!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
 					<div v-for="(value, key, index) in news_posts.title">
-						<div class="card container">
-							<div class="row">
-									<div>
-											<div  class="card-img-bottom container">
-												<img class="flex" v-bind:src=news_posts.image[key] style="flex-shrink: 0; min-height: 100%; max-width: 100%;overflow: hidden; float: left;">
-											</div>
-										  </div>
-							<div class="card-block">
-								<h3 class="card-title">{{news_posts.title[key]}}</h3>
-								<p class="card-text">{{news_posts.description[key]}}</p>
-								<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
+						<div class="card" style="width: 18rem; height: 18rem;">
+								<img class="card-img-top" v-bind:src=news_posts.image[key] style="width: 18rem;" >
+								<div class="card-block">
+									<h3 class="card-title">{{news_posts.title[key]}}</h3>
+									<p class="card-text">{{news_posts.description[key]}}</p>
+									<a class="card-text" v-bind:href=news_posts.link[key]>Read More</a>
+								</div>
 							</div>
-						
-						</div>
 						</div>
 					</div>
-
-				
-	
 				</div>
-
-				<div class="card container">
-							<!-- TradingView Widget BEGIN -->
-<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-<script type="text/javascript">
-new TradingView.widget({
-  "autosize": true,
-  "symbol": "COINBASE:BTCUSD",
-  "interval": "3",
-  "timezone": "Etc/UTC",
-  "theme": "Light",
-  "style": "2",
-  "locale": "en",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "hideideas": true
-});
-</script>
-<!-- TradingView Widget END -->
-				</div>
-
-			</div>
-		
-			</div>
-
-
-		</div>
-
-			<div class="card-group" id="first-row">
-				<div class="card">
-					<h2 class="card-header">Bitcoin Interest Over Time</h2>
-					<!-- Bitcoin Interest over time -->
-					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+				<div class="card-group" style="height: 400px;">
+				<div class="col-md-6 col-lg-6 col-sm-6 card container" style="">
+					<!-- TradingView Widget BEGIN -->
+					<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 					<script type="text/javascript">
-					  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+						new TradingView.widget({
+						  "autosize": true,
+						  "symbol": "COINBASE:BTCUSD",
+						  "interval": "3",
+						  "timezone": "Etc/UTC",
+						  "theme": "Light",
+						  "style": "2",
+						  "locale": "en",
+						  "toolbar_bg": "#f1f3f6",
+						  "enable_publishing": false,
+						  "allow_symbol_change": true,
+						  "hideideas": true
+						});
 					</script>
+					<!-- TradingView Widget END -->
 				</div>
-				<div class="card">
-					<h2 class="card-header">BTC Price Graph</h2>
-					<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
+					<div class="card col-md-6 col-lg-6">
+						<h2 class="card-header">Buy Bitcoin VS Sell Bitcoin</h2>
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+					</div>
 				</div>
-				<div class="card">
-					<h2 class="card-header">Buy BTC with Credit Card Searches: 30 Days</h2>
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-				</div>
-				<div class="card">
-					<h2 class="card-header">Use of the word Hodl: 30 days</h2>
-						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-				</div>
+		</div>
+		</div>
+		<div class="card-group" id="first-row">
+			<div class="card">
+				<h2 class="card-header">Bitcoin Interest Over Time</h2>
+				<!-- Bitcoin Interest over time -->
+				<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script>
+				<script type="text/javascript">
+					trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"btc","geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=btc&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+				</script>
 			</div>
-			<div class="card-group" id="second-row">
-				<div class="card">
-					<h2 class="card-header">Buy Bitcoin VS Sell Bitcoin</h2>
-					<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy bitcoin","geo":"","time":"today 1-m"},{"keyword":"sell bitcoin","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m,today 1-m&q=buy%20bitcoin,sell%20bitcoin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-				</div>
+			<div class="card">
+				<h2 class="card-header">BTC Price Graph</h2>
+				<img class="card-img-top" src="https://finance.google.com/finance/getchart?q=BTCUSD&amp;x=CURRENCY&amp;p=1M&amp;i=86400&amp;ei=IsYhWpG4McSPjAG5hbEY">
 			</div>
-
-
-
-
-
+			<div class="card">
+				<h2 class="card-header">Buy BTC with Credit Card Searches: 30 Days</h2>
+				<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"buy btc with credit card","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=buy%20btc%20with%20credit%20card","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+			</div>
+			<div class="card">
+				<h2 class="card-header">Use of the word Hodl: 30 days</h2>
+				<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1225_RC05/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"hodl","geo":"","time":"today 1-m"}],"category":0,"property":""}, {"exploreQuery":"date=today 1-m&q=hodl","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+			</div>
+		</div>
+		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
 		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 		<!-- vue-resource -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
-
 		<script>		
-
 			new Vue({
 				
 				el: "#btcjs",
@@ -153,7 +124,7 @@ new TradingView.widget({
 							link: [],
 							description: [],
 						},
-
+			
 					}
 				},
 				components: {
@@ -167,7 +138,7 @@ new TradingView.widget({
 							var balance = parseInt(response.data) * .00000001;
 							this.balance= balance;
 						});
-
+			
 					},
 					getRecieved: function() {
 						axios.get("https://blockchain.info/q/getreceivedbyaddress/" + this.btcaddr + "?cors=true").then(response => {
@@ -191,24 +162,24 @@ new TradingView.widget({
 							var key = 0;
 							xmlItem = $.parseXML(response.data);
 							$(xmlItem).find("item").each(function (){
-							if (key < 5) {
+							if (key < 6) {
 								var title = $(this).find("title").text();
 								var link = $(this).find("link").text();
 								rawDescription = $(this).find("description").text();
 								descriptionObject = $.parseHTML(rawDescription);
-
+			
 								image = descriptionObject[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src;
 								Vue.set(r.news_posts.title, key, title);
 								Vue.set(r.news_posts.link, key, link);
 								Vue.set(r.news_posts.image, key, image);
-
+			
 								key++;
 							}
 								
 							})
 						})
 						
-
+			
 					}
 				},
 			});
