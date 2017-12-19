@@ -67,8 +67,8 @@
                 <p>{{btc_sent_24}}</p>
             </div>
         </div>
-        <div class="card" class="container">
-            <h2 clas="card-title">News</h2>
+        <div class="card" class="container" style="height: 450px;">
+            <h2 style="margin-left: 10px;" class="card-title">News</h2>
             <nav class="nav nav-tabs" id="news-tab" role="tablist">
                 <a class="nav-item nav-link active" id="news-btc-tab" data-toggle="tab" href="#news-btc" role="tab" aria-controls="news-btc" aria-selected="true">BTC</a>
                 <a class="nav-item nav-link" id="news-eth-tab" data-toggle="tab" href="#news-eth" role="tab" aria-controls="news-eth" aria-selected="false">ETH</a>
@@ -78,7 +78,7 @@
                     <div class="card-group" style="column-count: 6;">
                         <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
                         <div v-for="(value, key, index) in news_posts_btc.title">
-                            <div class="card" style="width: 18rem; height: 18rem;">
+                            <div class="card" style="width: 18rem; height: 22rem;">
                                 <img class="card-img-top" v-bind:src=news_posts_btc.image[key] style="width: 18rem;">
                                 <div class="card-block">
                                     <h3 class="card-title">{{news_posts_btc.title[key]}}</h3>
@@ -93,7 +93,7 @@
                     <div class="card-group" style="column-count: 6;">
                         <!-- https://news.google.com/news/rss/headlines/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us -->
                         <div v-for="(value, key, index) in news_posts_eth.title">
-                            <div class="card" style="width: 18rem; height: 18rem;">
+                            <div class="card" style="width: 18rem; height: 22rem;">
                                 <img class="card-img-top" v-bind:src=news_posts_eth.image[key] style="width: 18rem;">
                                 <div class="card-block">
                                     <h3 class="card-title">{{news_posts_eth.title[key]}}</h3>
@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div class="card-group" style="height: 400px;">
+    <div class="card-group" style="height: 550px;">
         <div class="col-md-6 col-lg-6 col-sm-6 card container" style="">
             <!-- TradingView Widget BEGIN -->
             <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -343,7 +343,7 @@
                         var key = 0;
                         xmlItem = $.parseXML(response.data);
                         $(xmlItem).find("item").each(function() {
-                            if (key < 4) {
+                            if (key < 6) {
                                 var title = $(this).find("title").text();
                                 var link = $(this).find("link").text();
                                 rawDescription = $(this).find("description").text();
